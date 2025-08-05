@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Live Q&A</title>
+    <style>
+      body { font-family: sans-serif; margin: 1rem; }
+      #log { max-width: 600px; margin: auto; }
+      p { margin: 0.5rem 0; }
+      strong { color: #2c3e50; }
+    </style>
+  </head>
+  <body>
+    <h1>Live Q&A</h1>
+    <div id="log"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const log = document.getElementById('log');
+      const socket = io();
+
+      socket.on('question', q => {
+        const p = document.createElement('p');
+        p.textContent = 'Q: ' + q;
+        log.appendChild(p);
+      });
+
+      socket.on('answer', a => {
+        const p = document.createElement('p');
+        p.innerHTML = '<strong>A:</strong> ' + a;
+        log.appendChild(p);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>
