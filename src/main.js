@@ -6,8 +6,7 @@ import { GoogleGenAI } from '@google/genai';
 import express from 'express';
 import http from 'http';
 import { Server as IOServer } from 'socket.io';
-
-require('dotenv').config();
+import 'dotenv/config'; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
